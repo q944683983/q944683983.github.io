@@ -1,0 +1,1709 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Amazething</title>
+    <link>/post/index.xml</link>
+    <description>Recent content in Posts on Amazething</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>© 2018</copyright>
+    <lastBuildDate>Mon, 12 Nov 2018 21:35:59 +0800</lastBuildDate>
+    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>无人机编队</title>
+      <link>/post/formation/</link>
+      <pubDate>Mon, 12 Nov 2018 21:35:59 +0800</pubDate>
+      
+      <guid>/post/formation/</guid>
+      <description>
+
+&lt;h4 id=&#34;目录&#34;&gt;目录&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#组装一架满足编队需求的飞机&#34;&gt;一、组装一架满足编队需求的飞机&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#软件及嵌入式系统配置&#34;&gt;二、软件及嵌入式系统配置&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#编队程序解析&#34;&gt;三、编队程序解析&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;组装一架满足编队需求的飞机&#34;&gt;组装一架满足编队需求的飞机&lt;/h1&gt;
+
+&lt;p&gt;通常一个多旋翼组成包括以下硬件（四轴）：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;picture 1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;一个四周飞行器的构成&#34;&gt;一个四周飞行器的构成：&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;四轴机架 X1（必须）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;动力马达 X4 （必须）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;无刷电子调速器（电调/ESC）X4 （必须）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;PixhACK v3 飞控 X1 （必须）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;CUAV GPS X1 （必须）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;无线数传 (CUAV RADIO/XBEE/XTEND/HACKLINK/WP-LINK） X1对 （必须）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;动力电池（必须）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;RC遥控器和RC接收机（必须）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;无刷云台或者相机（可选）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;超声波或者激光传感器（可选）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;光流定点传感器（可选）&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;picture 2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;picture 3.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;支持电池类型&#34;&gt;支持电池类型&lt;/h2&gt;
+
+&lt;p&gt;使用标配的CUAV IV模块，支持标准2-6V动力电池&lt;/p&gt;
+
+&lt;p&gt;IV模块支持2-6V电压、0-60A电流 实时监测&lt;/p&gt;
+
+&lt;p&gt;理论上：&lt;/p&gt;
+
+&lt;p&gt;需要实时控制能飞行的高度和距离:跟动力续航时间、遥控器或者数传通讯距离有关&lt;/p&gt;
+
+&lt;p&gt;自主飞行的高度和距离：跟动力、续航时间有关&lt;/p&gt;
+
+&lt;h3 id=&#34;pixhack飞控板设备接线定义&#34;&gt;PixHack飞控板设备接线定义&lt;/h3&gt;
+
+&lt;p&gt;每种飞行器的电动机顺序 (里边的数字对应的飞控板的PWM输出端口)&lt;/p&gt;
+
+&lt;p&gt;CW 顺时针螺旋桨，绿色图示&lt;/p&gt;
+
+&lt;p&gt;CCW逆时针螺旋桨 ，蓝色图示&lt;/p&gt;
+
+&lt;p&gt;注意：错误的接线和固件，都会导致起飞就翻车，或者严重往一边倾斜，需要谨慎安装和选择固件
+&lt;img src=&#34;picture 4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;四轴飞行器&#34;&gt;四轴飞行器：&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;picture 5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这种H型机架，应该配置X型模式&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;picture 6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;软件及嵌入式系统配置&#34;&gt;软件及嵌入式系统配置&lt;/h1&gt;
+
+&lt;p&gt;飞控的Telem2接口与RaspberryPI的UART通过3-pin twisted cable连接，RaspberryPI与XBee(本项目采用XBee pro s1)通过USB cable相连。为了使三者能够正常通信，须按照以下步骤进行配置。&lt;/p&gt;
+
+&lt;h2 id=&#34;raspberrypi配置参考&#34;&gt;RaspberryPI配置参考&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-树莓派操作系统-注-本项目采用带有图形界面的ubuntu-mate-16-04-for-raspberrypi-3b-其他的os配置方法可能不同&#34;&gt;1. 树莓派操作系统(注:本项目采用带有图形界面的Ubuntu MATE 16.04 for RaspberryPI 3B，其他的OS配置方法可能不同)&lt;/h3&gt;
+
+&lt;p&gt;1) SD卡格式化软件SD Formatter 4.0 for SD/SDHC/SDXC&lt;/p&gt;
+
+&lt;p&gt;2) 系统镜像文件在Ubuntu mate官网上下载，写入SD卡的软件Win32 Disk Imager&lt;/p&gt;
+
+&lt;p&gt;3) 安装操作系统时，勾选开机自动登录。(实现auto-login)&lt;/p&gt;
+
+&lt;p&gt;4) 操作系统安装完成以后，下载文本编辑器gedit，方便后续更改配置文件。
+sudo apt install gedit&lt;/p&gt;
+
+&lt;h3 id=&#34;2-将uart启用为communication-interface&#34;&gt;2. 将UART启用为communication interface。&lt;/h3&gt;
+
+&lt;p&gt;1) sudo gedit /boot/cmdline.text&lt;/p&gt;
+
+&lt;p&gt;2) 删除语句‘console=serial0,115200’保存并退出。&lt;/p&gt;
+
+&lt;h3 id=&#34;3-修改uart配置-关闭蓝牙-注-mate系统默认蓝牙占用uart&#34;&gt;3. 修改UART配置，关闭蓝牙（注:mate系统默认蓝牙占用UART）&lt;/h3&gt;
+
+&lt;p&gt;1) sudo gedit /boot/config.txt&lt;/p&gt;
+
+&lt;p&gt;2) 修改init_uart_clock to 16MHz以及init_uart_baudrate to 921600并删除语句前面的注释符号#。（注:飞控Telem2波特率也要相应地修改为921600）&lt;/p&gt;
+
+&lt;p&gt;3) 在文本下面添加语句‘core_freq = 250’&lt;/p&gt;
+
+&lt;p&gt;4) 在文本下面添加语句‘dtoverlay=pi3-disable-bt’保存并退出&lt;/p&gt;
+
+&lt;p&gt;5) sudo systemctl disable hciuart
+ sudo reboot&lt;/p&gt;
+
+&lt;p&gt;重启后UART配置完成&lt;/p&gt;
+
+&lt;h3 id=&#34;4-安装python包和linux包-注-mate系统自带python-2-7环境&#34;&gt;4. 安装Python包和Linux包。（注:mate系统自带python 2.7环境）&lt;/h3&gt;
+
+&lt;p&gt;1) sudo apt install python-pip python-dev
+sudo pip install pip dronekit xbee numpy gps pyzmq –-upgrade&lt;/p&gt;
+
+&lt;p&gt;2) sudo apt install python-serial&lt;/p&gt;
+
+&lt;h3 id=&#34;5-开启ssh&#34;&gt;5. 开启ssh。&lt;/h3&gt;
+
+&lt;p&gt;1) sudo apt install openssh-server openssh-client&lt;/p&gt;
+
+&lt;p&gt;2) sudo raspi-cofig&lt;/p&gt;
+
+&lt;p&gt;3) 出现配置界面，选择‘network’。&lt;/p&gt;
+
+&lt;p&gt;4) 选择‘ssh enabled’。&lt;/p&gt;
+
+&lt;h3 id=&#34;6-设置开机自启程序-确保auto-login已实现&#34;&gt;6. 设置开机自启程序。(确保auto-login已实现)&lt;/h3&gt;
+
+&lt;p&gt;1) sudo gedit /etc/rc.local&lt;/p&gt;
+
+&lt;p&gt;2) 在文件中添加
+cd /AmazeFly
+python onboard.py -xbee /dev/ttyUSB –pix /dev/ttyAMA0，保存退出&lt;/p&gt;
+
+&lt;h2 id=&#34;xbee配置参考&#34;&gt;XBee配置参考&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-固件烧写&#34;&gt;1. 固件烧写&lt;/h3&gt;
+
+&lt;p&gt;1) 下载工具XCTU&lt;/p&gt;
+
+&lt;p&gt;2) 烧写DigiMesh固件(注:推荐8073 – Xbee DiGiMesh 2.4)&lt;/p&gt;
+
+&lt;h3 id=&#34;2-将配置文件导入xbee&#34;&gt;2. 将配置文件导入XBee&lt;/h3&gt;
+
+&lt;h1 id=&#34;编队程序解析&#34;&gt;编队程序解析&lt;/h1&gt;
+
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;Welcome to the AmazeFly project! &amp;ldquo;AmazeFly&amp;rdquo; is a multi-copter drone test platform originally designed by Amazegroup, NCEPU.&lt;/p&gt;
+
+&lt;p&gt;The &amp;ldquo; AmazeFly &amp;rdquo; drones take the &lt;a href=&#34;pixhawk.org&#34;&gt;Pixhawk&lt;/a&gt; and the &lt;a href=&#34;www.ardupilot.org&#34;&gt;ArduPilot&lt;/a&gt; stack as their low-level flight  controller and use &lt;a href=&#34;python.dronekit.io&#34;&gt;dronekit-python&lt;/a&gt; as the high-level application control. So far there is no modification at the Pixhawk and the ArduPilot level, so this project is purely written in Python running on a Linux companion computer (e.g. Raspberry Pi).&lt;/p&gt;
+
+&lt;p&gt;The &amp;ldquo;AmazeFly&amp;rdquo; drones use &lt;a href=&#34;https://www.digi.com/products/xbee-rf-solutions/2-4-ghz-modules&#34;&gt;XBee&lt;/a&gt; modules to establish a high-level communication network between the drones and the ground control station.&lt;/p&gt;
+
+&lt;h4 id=&#34;license&#34;&gt;License&lt;/h4&gt;
+
+&lt;p&gt;AmazeFly Project is made available under the permissive open source Apache 2.0 License.&lt;/p&gt;
+
+&lt;h4 id=&#34;coding-convention&#34;&gt;Coding convention&lt;/h4&gt;
+
+&lt;p&gt;This project is entirely written in Python 2.7, under the convention of &lt;a href=&#34;https://google.github.io/styleguide/pyguide.html&#34;&gt;Google Python Style Guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;system-requirement&#34;&gt;System requirement&lt;/h3&gt;
+
+&lt;h4 id=&#34;drone&#34;&gt;Drone&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;A multi-copter drone using Pixhawk as its flight controller.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;A mini onboard Linux companion computer. (e.g. Raspberry Pi)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;An XBee module with a USB adapter. (e.g. XBee S1, XBee S2C, etc.)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Zigbee&amp;rsquo;s are not recommended as they are relatively slow and have small data throughput volume. Zigbee modules tend to get stuck often. The XBee Pro S1 with DIJI Mesh firmware is tested to be working very well. A new hardware upgrade by DIJI unifies XBee and Zigbee to &amp;ldquo;S2C&amp;rdquo; version, which are now compatible across all the DIJI product lines.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;(Optional) A USB-TTL adapter for debugging (e.g. FT232, CP2102/CP2104, do not use PL2303)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Connection example:&lt;/strong&gt; The XBee modules is connected to the RPi via USB, and the Rpi is conected to the Pixhawk via UART. Configure the hardware UART on the Rpi to run at 921600bps baudrate, consistent with the setup on Pixhawk&amp;rsquo;s serials. See &lt;a href=&#34;http://ardupilot.org/dev/docs/companion-computers.html&#34;&gt;Companion Computers&lt;/a&gt; page in the ArduPilot dev wiki.&lt;/p&gt;
+
+&lt;h4 id=&#34;ground-control-station&#34;&gt;Ground control station&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;A Linux computer. (Virtual machines are okay)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;An XBee module with a USB adapter. (e.g. XBee S1, XBee S2C, etc.)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;packages&#34;&gt;Packages&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Linux packages: python-pip python-dev python-serial python-gps gpsd gpsd-clients&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Python packages: dronekit dronekit-sitl xbee numpy pyzmq&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;the-main-composition-of-the-project&#34;&gt;The main composition of the project&lt;/h3&gt;
+
+&lt;p&gt;gcs.py: The ground control station script for the quadcopter flocking control experiment.&lt;/p&gt;
+
+&lt;p&gt;onboard.py: Onboard main script for the multi quadcopter flocking control experiment.&lt;/p&gt;
+
+&lt;p&gt;comm.py: Communication classes and functions.&lt;/p&gt;
+
+&lt;p&gt;mas.py; Multi-agent system control algorithm module.&lt;/p&gt;
+
+&lt;p&gt;nav.py: Navigation functions.&lt;/p&gt;
+
+&lt;p&gt;shared.py: Attributes shared across the files.&lt;/p&gt;
+
+&lt;p&gt;util.py: Utility functions.&lt;/p&gt;
+
+&lt;p&gt;missionparser.py: Upload the missions.&lt;/p&gt;
+
+&lt;p&gt;PWMController.py: Turn on or turn off the LED on the drones.&lt;/p&gt;
+
+&lt;p&gt;mission_txt: The directory to place some TXT files of the missions.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;how-to-use&#34;&gt;How to use&lt;/h3&gt;
+
+&lt;p&gt;1.Plan a mission:&lt;/p&gt;
+
+&lt;p&gt;Software: APM Planner 2.0&lt;/p&gt;
+
+&lt;p&gt;Steps:(1)Run the software.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  (2)Click &#39;FLIGHT PLAN&#39;.
+
+  (3)Click on a point on the map(with number of 0)  as the &#39;Home Origin&#39;.
+
+  (4)Click the 2nd point(with number of 1) as the &#39;Takeoff&#39; point.
+
+  (5)Continue to click some points as the waypoints.
+
+  (6)Altitudes, accuracis and headings of the points can be changed in the lower part of the pages.
+
+  (7)Copy the generated TXT files to the mission_txt directory and divide them by the serial numbers of the drones.(The TXT files&#39;s names must be &#39;FIRST.txt&#39;, &#39;SECOND.txt&#39; or &#39;THIRD.txt&#39;.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Reference: &lt;a href=&#34;http://ardupilot.org/planner2/&#34;&gt;http://ardupilot.org/planner2/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2.Run onboard.py :&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;onboard.py&lt;/code&gt; script will run automatically when the power of the drone is switched on.&lt;/p&gt;
+
+&lt;p&gt;3.Control the drones through gcs.py:&lt;/p&gt;
+
+&lt;p&gt;(1)Turn on the computer.&lt;/p&gt;
+
+&lt;p&gt;(2)Connect the linux computer with the Xbee module.&lt;/p&gt;
+
+&lt;p&gt;(3)Run the Terminal.&lt;/p&gt;
+
+&lt;p&gt;(4)Use the command &amp;lsquo;cd&amp;rsquo;to enter the project directory.&lt;/p&gt;
+
+&lt;p&gt;(5)Run the &lt;code&gt;gcs.py&lt;/code&gt; script by &lt;code&gt;sudo python gcs.py -xbee /dev/ttyUSB0&lt;/code&gt;. Use &lt;code&gt;--help&lt;/code&gt; or refer to the source code docstrings for detailed script arguments.&lt;/p&gt;
+
+&lt;p&gt;(6)The console will start prompting some information. Input keys accordingly to execute certain operations.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Keylist:
+
+    &#39;x&#39;: 0,  # switch the mode to auto
+
+    &#39;1&#39;: 1,  # the first mission
+
+    &#39;2&#39;: 2,  # the second mission
+
+    &#39;3&#39;: 3,  # the third mission
+
+    &#39;l&#39;: 4,  # landed
+
+    &#39;d&#39;: 5,  # light-high level
+
+    &#39;k&#39;: 6,  # kill thread and restart
+
+
+
+A normal takeoff sequence should be:
+
+1). press `&#39;1&#39;/&#39;2&#39;/&#39;3&#39;` to choose the first/second/third mission.
+
+2). press `&#39;x&#39;` to switch the mode to auto and take them off.
+
+3). press `&#39;d&#39;` to turn on the LED.
+
+4). press `&#39;l&#39;` to directly land the drones.
+
+5). press `&#39;k&#39;` to kill thread and restart.
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>机器人导航</title>
+      <link>/post/navigation/</link>
+      <pubDate>Sun, 11 Nov 2018 12:00:29 +0800</pubDate>
+      
+      <guid>/post/navigation/</guid>
+      <description>
+
+&lt;h4 id=&#34;目录&#34;&gt;目录&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#系统镜像解包与打包&#34;&gt;一、系统镜像解包与打包&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#系统镜像裁剪&#34;&gt;二、系统镜像裁剪（最小文件系统制作）&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#系统烧录&#34;&gt;三、系统烧录&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#串口调试&#34;&gt;四、串口调试&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#系统内核修改&#34;&gt;五、系统内核修改&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#系统环境配置&#34;&gt;六、系统环境配置&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#交叉编译器&#34;&gt;七、交叉编译器&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;系统镜像解包与打包&#34;&gt;系统镜像解包与打包&lt;/h1&gt;
+
+&lt;p&gt;本项目最初使用的是型号为MIQI（SBC）的板卡，处理器为RK3288。考虑使用MIQI官网提供的lubuntu14.04社区版本的固件，而在项目中间需要增添以及需改驱动，以及文件系统，那么就需要将固件解包，然后修改内核，文件系统，然后再打包，如下则为该过程详解：&lt;/p&gt;
+
+&lt;h2 id=&#34;1-获得源码&#34;&gt;1.获得源码：&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;1.  $mkdir miqi_root
+2.  $cd miqi_root
+3.  $git clone https://github.com/mqmaker/miqi-linux-build.git build
+4.  $git checkout -b rklinux remotes/origin/miqi/v3.10
+5.  $git clone https://github.com/mqmaker/miqi-linux-kernel.git rockchip-kernel
+6.  $git checkout -b linux remotes/origin/miqi/linux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2-将官网下载的lubuntu解包&#34;&gt;2.将官网下载的lubuntu解包：&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;1. ./ rkImageMaker -unpack lubuntu镜像存放的位置 要存放到的位置
+（本项目是创建了一个与后面提到的内核源码处于同一级目录下的文件夹build）
+2. ./afptool -unpack build/firmware.img buid/unpack
+3.修改后打包
+修改即对内核或者是文件系统进行修改后，用新的内核或者是文件系统替换原来镜像中对应的内核或者是文件系统。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意：package-file里面的linuxroot路径是错的，在linuxroot前面加上Image\，即最后一行修改成如下样式。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# NAME      Relative path
+#
+#HWDEF      HWDEF
+package-file    package-file
+bootloader  RKLoader.bin
+parameter   parameter
+# boot to linux
+recovery           Image\recovery.img
+#cache       Image\small_ext4.img
+#data       Image\small_ext4.img
+backup          RESERVED
+linuxroot   Image\linuxroot.img 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;修改过后，使用以下脚本进行打包（注意前面变量设置，工具链存放位置，若不对的话可以修改脚本或者移动工具链）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+SWD=$(cd &amp;quot;$(dirname &amp;quot;$0&amp;quot;)&amp;quot;; pwd)
+AFPTOOL=${SWD}/../afptool
+IMGMAKER=${SWD}/../rkImageMaker
+#GEN_DIR=${SWD}/gen
+#OUT_DIR=${SWD}/out
+TMP_IMG=firmware.img
+UPDATE_IMG=ubuntu1404-sfs.img
+LOADER=RKLoader.bin
+
+pause()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{
+    echo &amp;ldquo;Press any key to quit:&amp;rdquo;
+    read -n1 -s key
+    exit 1&lt;/p&gt;
+
+&lt;p&gt;}
+    echo &amp;ldquo;start to make update.img&amp;hellip;&amp;rdquo;
+    # read pack-file packing to update.img
+    #mkdir -p ${GEN_DIR}
+    #mkdir -p ${OUT_DIR}
+    echo ${SWD} $TMP_IMG
+    $AFPTOOL -pack ${SWD} $TMP_IMG || pause
+    # merge uboot and firmware
+    rm -f ${UPDATE_IMG}
+    $IMGMAKER -RK32 $LOADER $TMP_IMG ${UPDATE_IMG} -os_type:androidos || pause
+    #rm -r ${GEN_DIR}
+    echo &amp;ldquo;Making lubuntu1404.img OK.&amp;rdquo;
+    #echo &amp;ldquo;Press any key to quit:&amp;rdquo;
+    #read -n1 -s key
+    exit 0&lt;/p&gt;
+
+&lt;p&gt;注意：倒数第四行中echo &amp;ldquo;Making lubuntu1404.img OK.&amp;rdquo;   lubuntu1404.img为你要修改后的镜像名。&lt;/p&gt;
+
+&lt;h1 id=&#34;系统镜像裁剪&#34;&gt;系统镜像裁剪&lt;/h1&gt;
+
+&lt;h2 id=&#34;1-获得ubuntu最小裸文件系统&#34;&gt;1.获得ubuntu最小裸文件系统&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-从ubuntu官方网站下载其提供的最小裸文件系统&#34;&gt;（1）从ubuntu官方网站下载其提供的最小裸文件系统。&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;  mkdir~/ubuntu-rootfs
+  cd ubuntu-rootfs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下载Ubuntu Core rootfs&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget http://cdimage.ubuntu.com/ubuntu-core/releases/14.04.1/release/ubuntu-core-14.04-core-armhf.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者直接去网上找到对应的版本下载&lt;/p&gt;
+
+&lt;h3 id=&#34;2-解压ubuntu-core-rootfs-tar包&#34;&gt;（2）解压Ubuntu Core rootfs tar包&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo tar -xzvf ubuntu-core-14.04-core-armhf.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-由于我们要chroot-所以需要能够在chroot环境执行armhf版本的binary-所以我们要接触linux的binfmt机制和qemu-static解释器&#34;&gt;（3）由于我们要chroot，所以需要能够在chroot环境执行armhf版本的binary，所以我们要接触linux的binfmt机制和qemu static解释器。&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-getinstall qemu-user-static
+sudo cp/usr/bin/qemu-arm-static ubuntu-rootfs /usr/bin/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;4-将本机的dns配置复制到目标rootfs-后面联网时会用到&#34;&gt;（4）将本机的dns配置复制到目标rootfs，后面联网时会用到&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo cp -b/etc/resolv.conf ~/ubuntu-rootfs/etc/resolv.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2-挂载文件系统&#34;&gt;2.挂载文件系统&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mount –t proc /proc ~/ubuntu-rootfs/proc
+sudo mount –t sysfs /sys ~/ubuntu-rootfs/sys
+sudo mount –o bind /dev ~/ubuntu-rootfs/dev
+sudo mount –o bind /dev/pts ~/ubuntu-rootfs/dev/pts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;3-chroot-进入chroot环境&#34;&gt;3.chroot(进入chroot环境)&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo chroot ~/ubuntu-rootfs/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;4-配置网络服务&#34;&gt;4.配置网络服务&lt;/h2&gt;
+
+&lt;p&gt;使用vim或者是vi，修改/etc/apt/sources.list的内容。去掉除以deb-src开头的
+所有库的注释。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  vim /etc/apt/sources.list
+ 或vi /etc/apt/sources.list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;5-安装软件&#34;&gt;5.安装软件&lt;/h2&gt;
+
+&lt;p&gt;首先需要更新软件源&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意：如果失败，就需要配置dns，resolv.conf
+建议安装软件如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SSH，远程登陆系统需要用到。
+Networkmanager,网络管理的软件。
+wireless-tools。
+等等。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装对应软件直接使用下方命令行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apt-get install 软件名
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;6-设置用户相关&#34;&gt;6.设置用户相关&lt;/h2&gt;
+
+&lt;p&gt;adduser Ubuntu，然后根据提示设置密码。
+设置主机名称：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo&amp;quot;ubuntu-arm&amp;quot;&amp;gt;/etc/hostname
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设置本机入口ip：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo&amp;quot;127.0.0.1 localhost&amp;quot;&amp;gt;&amp;gt;/etc/hosts
+echo&amp;quot;127.0.1.1 ubuntu-arm&amp;quot;&amp;gt;&amp;gt;/etc/hosts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;允许自动更新dns：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dpkg-reconfigureresolvconf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设置时区：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dpkg-reconfiguretzdata
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;7-配置串口调试&#34;&gt;7.配置串口调试&lt;/h2&gt;
+
+&lt;p&gt;添加一个/etc/init/ttyS2.conf文件（查得官方资料得知调试串口号为ttyS2）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cp tty1.conf ttyS2.conf
+vi ttyS2.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;修改其内容如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;start on stoppedrc or RUNLEVEL=[12345]
+stop on runlevel[!12345]
+respawn
+exec /sbin/getty-L 115200 ttyS2 vt102
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;8-退出chroot-直接exit&#34;&gt;8.退出chroot，直接exit&lt;/h2&gt;
+
+&lt;h2 id=&#34;9-卸载相关文件系统&#34;&gt;9.卸载相关文件系统&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo unmount ~/ubuntu-rootfs/proc
+sudo unmount ~/ubuntu-rootfs/sys
+sudo unmount ~/ubuntu-rootfs/dev
+sudo unmount ~/ubuntu-rootfs/dev/pts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;10-制作系统镜像&#34;&gt;10.制作系统镜像&lt;/h2&gt;
+
+&lt;p&gt;参考另一篇文档镜像打包与解包，先将原始镜像解包，将这个最小文件系统替换原始镜像
+的文件系统，然后再打包，就做好了。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意：烧录系统后，提示文件系统空间不够，那么就重新resize2fs 分区名。分区名可以用如下命令行：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;cat /proc/partition
+或 df
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;若出现无法上网的问题，可能需要手动获取IP地址，但如果安装了networkmanager，一般不会出现该问题
+dhclient eth0&lt;/p&gt;
+
+&lt;h1 id=&#34;系统烧录&#34;&gt;系统烧录&lt;/h1&gt;
+
+&lt;p&gt;系统烧录在Windows，Ubuntu两个操作系统都可以实现，就之前提到的LUBUNTU社区版，在Windows下烧录较为容易，因此，此文叙述的为Windows下的烧录过程：&lt;/p&gt;
+
+&lt;h2 id=&#34;1-下载-release-driverassistant-zip-解压-然后运行里面的-driverinstall-exe&#34;&gt;1.   下载 Release_DriverAssistant.zip，解压，然后运行里面的 DriverInstall.exe 。&lt;/h2&gt;
+
+&lt;p&gt;为了所有设备都使用更新的驱动，请先选择&amp;rdquo;驱动卸载&amp;rdquo;，然后再选择&amp;rdquo;驱动安装&amp;rdquo;。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-1-下载软件工具&#34;&gt;1.1 下载软件工具：&lt;/h3&gt;
+
+&lt;p&gt;AndroidTool_Release_v2.39，在MIQI官方文档里就会提供，或者直接从网上下载就行，这是Rockchip官方提供的烧录工具。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-2-进入软件可以看到如下三界面&#34;&gt;1.2 进入软件可以看到如下三界面：&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;Fag1.jpg&#34; alt=&#34;&#34; title=&#34;Fag1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;Fag2.jpg&#34; alt=&#34;&#34; title=&#34;Fag2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;Fag3.jpg&#34; alt=&#34;&#34; title=&#34;Fag3&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;三种方法都可以实现烧录功能，但是本项目常用的是第二种，因为在做系统镜像时已经将其打包，故下面介绍该种方法：&lt;/p&gt;
+
+&lt;h6 id=&#34;1-点击-固件-按钮&#34;&gt;1.   点击“固件”按钮&lt;/h6&gt;
+
+&lt;p&gt;选择对应你要烧录的镜像文件&lt;/p&gt;
+
+&lt;h6 id=&#34;2-板卡-进入-rockusb-模式&#34;&gt;2.   板卡：进入‘rockusb’模式&lt;/h6&gt;
+
+&lt;p&gt;（1） 断开USB电源&lt;/p&gt;
+
+&lt;p&gt;（2） 使用镊子或回形针按住恢复键&lt;/p&gt;
+
+&lt;p&gt;（3） 重新连接USB电源&lt;/p&gt;
+
+&lt;p&gt;（4） 等待大约3秒，然后释放恢复键。&lt;/p&gt;
+
+&lt;p&gt;（5） PC端上传软件应检测到加载设备&lt;/p&gt;
+
+&lt;h6 id=&#34;3-执行-升级固件-步骤&#34;&gt;3.   执行“升级固件”步骤&lt;/h6&gt;
+
+&lt;p&gt;即按下“升级”按钮。在升级后，软件右端还会显示“检查固件”，最好等其执行完再断开。&lt;/p&gt;
+
+&lt;h1 id=&#34;串口调试&#34;&gt;串口调试&lt;/h1&gt;
+
+&lt;p&gt;串口调试即是在PC上登陆板卡系统，然后对其进行调试。本项目大致使用到了两种登陆方式，第一种就是在自己PC上的UBUNTU操作系统上使用软件minicom进行登陆，还有一种就是通过SSH远程登入，第二种方法已经在其他文档中介绍了，本文不再赘述，下面介绍的是第一种登陆方法：&lt;/p&gt;
+
+&lt;h2 id=&#34;1-硬件连接&#34;&gt;1.   硬件连接&lt;/h2&gt;
+
+&lt;h3 id=&#34;使用转串口-将pc与开发板进行连接&#34;&gt;使用转串口，将PC与开发板进行连接：&lt;/h3&gt;
+
+&lt;p&gt;（1）    转串口GND地线与开发板GND针相连；&lt;/p&gt;
+
+&lt;p&gt;（2）    转串口TXD输出线与开发板RX针相连；&lt;/p&gt;
+
+&lt;p&gt;（3）    转串口RXD输入线与开发板TX针相连；&lt;/p&gt;
+
+&lt;h2 id=&#34;2-连接参数&#34;&gt;2.   连接参数&lt;/h2&gt;
+
+&lt;p&gt;（1）    波特率：115200&lt;/p&gt;
+
+&lt;p&gt;（2）    数据位：8&lt;/p&gt;
+
+&lt;p&gt;（3）    停止位：1&lt;/p&gt;
+
+&lt;p&gt;（4）    奇偶校验位：无&lt;/p&gt;
+
+&lt;p&gt;（5）    流控：无&lt;/p&gt;
+
+&lt;p&gt;这些参数是需要在minicom上面设置的，基本上只需要设置第一项参数就行，其他一般minicom上设置的都符合要求。&lt;/p&gt;
+
+&lt;h2 id=&#34;3-串口调试&#34;&gt;3.   串口调试&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;此项即是系统登陆的重要步骤，除了按照第二点提到的需要设置的参数以外，还需要将连接的串口号设置为ttyUSB0。
+设置minicom参数的命令行如下：&lt;/p&gt;
+
+&lt;p&gt;sudo minicom –s&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;打开该界面后选择第三项，然后进行设置&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;注意设置完毕后需要保存，选择第五项，保存设置&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;设置完毕后，那么就将板卡上电，用之前提到的转串口的另一端的USB口连接上PC，打开minicom：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo minicom
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;然后就可以进入到板卡的系统里了，注意初次登陆的密码为“miqi”，后面可以自行修改密码。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;需要注意的地方&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;h3 id=&#34;1-若pc上没有显示板卡打印出来的信息-可以考虑重新上电&#34;&gt;1.  若PC上没有显示板卡打印出来的信息，可以考虑重新上电&lt;/h3&gt;
+
+&lt;h3 id=&#34;2-不再调试时-需要先退出minicom-ctrl-a-x-再停止对板卡的供电-若两步实施顺序改变-则下次使用minicom时会出现以下这种情况&#34;&gt;2.  不再调试时，需要先退出minicom（ctrl A + X），再停止对板卡的供电，若两步实施顺序改变，则下次使用minicom时会出现以下这种情况：&lt;/h3&gt;
+
+&lt;h4 id=&#34;串口被锁-device-dev-ttys0-is-locked&#34;&gt;串口被锁（Device /dev/ttyS0 is locked&lt;/h4&gt;
+
+&lt;h5 id=&#34;解决方法&#34;&gt;&lt;strong&gt;解决方法&lt;/strong&gt;：&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt; ls /var/lock
+ 出现LCK..ttyS0  subsys这个文件
+ kill 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之后就可以重新进入minicom了。&lt;/p&gt;
+
+&lt;h1 id=&#34;系统内核修改&#34;&gt;系统内核修改&lt;/h1&gt;
+
+&lt;p&gt;本项目对内核修改的操作大致分为两部分，一部分是基本操作，包括编译内核以及编译内核模块和第二部分是本项目的相关特殊操作，包括配置uart3以及增添5g驱动，下面介绍了各部分工作过程：&lt;/p&gt;
+
+&lt;h2 id=&#34;1-1编译内核&#34;&gt;1.1编译内核&lt;/h2&gt;
+
+&lt;p&gt;在内核源码下执行make menuconfig之后，就可以看到对应的内核配置界面，用户可以勾选需要编译的驱动以及其他文件，对于驱动可以选择将其直接编译进内核，也可以选择将其编译成模块，如果选择编译成模块，可以参考如下&lt;strong&gt;3.2编译成modules&lt;/strong&gt;。
+在用户配置完内核后，会生成一个配置文件，用该配置文件对内核进行编译，用如下脚本进行编译：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+###################################################################
+##
+##  You need to change ANDROID_ROOT to real Android SDK path !!!!!
+##
+###################################################################
+
+MIQI_BUILD_DIR=${PWD}
+MIQI_KERNEL_DIR=${PWD}/../rockchip-kernel
+MIQI_ROOTFS_IMG_FULLPATH=
+
+ARCH=arm
+CROSS_COMPILE=arm-eabi-
+export ARCH CROSS_COMPILE
+export PATH=${MIQI_BUILD_DIR}/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin:$PATH
+
+build_kernel()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{
+    (
+        cd $MIQI_KERNEL_DIR
+        make ARCH=arm xxxx_defconfig
+        make ARCH=arm -j8 rk3288-MiQi.img&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    ./mkbootimg --kernel arch/arm/boot/zImage \
+        --ramdisk ${MIQI_BUILD_DIR}/images/rootfs.cpio.gz  \
+        --second resource.img \
+        --output recovery-linux.img
+
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;build_kernel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;build_kernel函数中对应的make ARCH=arm xxxx_defconfig这一行中，xxxx_defconfig即为上面提到的你自己配置内核后生成的配置文件，其具体名字需要在脚本中自行修改，该脚本会按照该文件对内核进行编译。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;脚本最前面的变量设置。本人是将内核源码以及build文件夹（即存放lubuntu解包后存放的位置，以及打包后新镜像存放的位置）。因此该脚本是放在build文件夹下。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;1-2编译modules&#34;&gt;1.2编译modules&lt;/h2&gt;
+
+&lt;p&gt;在内核源码对应的文件目录下执行如下命令行：&lt;/p&gt;
+
+&lt;p&gt;若报错 “编译链位置错误”，则将build文件夹下的prebuild考过去到内核所在文件夹上一级对应makefile中的编译工具链的位置，该文件夹下包含编译内核需要的工具链。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;make modules
+mkdir modules_install
+make INSTALL_MOD_PATH=./modules_install modules_install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;拷到开发版后，清楚模块安装目录(该目录含有链接，会影响SDK的编译)&lt;/p&gt;
+
+&lt;h2 id=&#34;1-3-配置uart3-即对应系统中ttys3串口-需要连接飞控使用&#34;&gt;1.3 配置uart3,即对应系统中ttys3串口，需要连接飞控使用。&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-3-1配置-dts-节点&#34;&gt;1.3.1配置 DTS 节点&lt;/h3&gt;
+
+&lt;p&gt;文件 kernel/arch/arm/boot/dts/rk3288.dtsi 中已经有 uart 相关节点定义，如下所示：&lt;/p&gt;
+
+&lt;p&gt;uart_gps: serial@ff1b0000 {
+                compatible = &amp;ldquo;rockchip,serial&amp;rdquo;;
+                reg = &lt;0xff1b0000 0x100&gt;;
+                interrupts = &lt;GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH&gt;;
+                clock-frequency = &lt;24000000&gt;;
+                clocks = &amp;lt;&amp;amp;clk_uart3&amp;gt;, &amp;lt;&amp;amp;clk_gates6 11&amp;gt;;
+                clock-names = &amp;ldquo;sclk_uart&amp;rdquo;, &amp;ldquo;pclk_uart&amp;rdquo;;
+                current-speed = &lt;115200&gt;;
+                reg-shift = &lt;2&gt;;
+                reg-io-width = &lt;4&gt;;
+                dmas = &amp;lt;&amp;amp;pdma1 7&amp;gt;, &amp;lt;&amp;amp;pdma1 8&amp;gt;;#dma-cells = &lt;2&gt;;
+                pinctrl-names = &amp;ldquo;default&amp;rdquo;;
+                pinctrl-0 = &amp;lt;&amp;amp;uart3_xfer &amp;amp;uart3_cts &amp;amp;uart3_rts&amp;gt;;
+                status = &amp;ldquo;disabled&amp;rdquo;;&lt;/p&gt;
+
+&lt;p&gt;};&lt;/p&gt;
+
+&lt;p&gt;注：uart_gps 在该文件的 aliases 节点中被定义为：&lt;strong&gt;serial3 = &amp;amp;uart_gps&lt;/strong&gt;;
+用户只需在 **kernel/arch/arm/boot/dts/firefly-rk3288.dts **文件中打开所要使用的节点即可，如下所示：&lt;/p&gt;
+
+&lt;p&gt;&amp;amp;uart_gps {
+    status = &amp;ldquo;okay&amp;rdquo;;
+    dma-names = &amp;ldquo;!tx&amp;rdquo;, &amp;ldquo;!rx&amp;rdquo;;pinctrl-0 = &amp;lt;&amp;amp;uart3_xfer &amp;amp;uart3_cts&amp;gt;;&lt;/p&gt;
+
+&lt;p&gt;};&lt;/p&gt;
+
+&lt;h2 id=&#34;1-4增添驱动-5g&#34;&gt;1.4增添驱动（5G）&lt;/h2&gt;
+
+&lt;p&gt;无人机需要网络传输功能，而实验室环境中受到较多2.4GHZ wifi信号的干扰，那么考虑采用5GHZ wifi 信号。在网上购买5G网卡后，发现需要8811AU驱动，而在内核源码对应的目录下，执行make menuconfig,并未发现8811AU驱动，那么需要自己添加进去，过程如下（在此之前需要将该驱动文件下载下来）：&lt;/p&gt;
+
+&lt;p&gt;1、将8811AU.tar.gz（名字可以自行修改）文件解压至”内核源码包/drivers/net/wireless/”路径下。&lt;/p&gt;
+
+&lt;p&gt;2、make menuconfig，找到Device drivers-&amp;gt;network device support-&amp;gt;wireless lan-&amp;gt;usb zd1201 based wireless device support*&lt;em&gt;选为&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;3、修改”内核源码包/drivers/net/wireless”路径下的Kconfig，底行增加：
+source &amp;ldquo;drivers/net/wireless/8811AU/Kconfig”&lt;/p&gt;
+
+&lt;p&gt;4、修改”内核源码包/drivers/net/wireless”路径下的makefile，底行增加：
+obj-$(CONFIG_8811AU) +=8811AU/&lt;/p&gt;
+
+&lt;p&gt;5、到内核源码包位置make menuconfig，选中Device drivers-&amp;gt;network device support-&amp;gt;wireless lan-&amp;gt;8811AU USB wifi选为*&lt;/p&gt;
+
+&lt;p&gt;6、保存 make之后。
+注意：修改完内核后需要重新编译内核，若是增添了内核模块，需要重新编译内核模块，放到系统指定位置下。&lt;/p&gt;
+
+&lt;h1 id=&#34;系统环境配置&#34;&gt;系统环境配置&lt;/h1&gt;
+
+&lt;p&gt;此处环境配置指的是本项目所需要用到的各个软件环境以及所需要的库的配置，包括：
+&lt;strong&gt;Opencv，Ros，Optitrack，Eigen，mavros&lt;/strong&gt;等。&lt;/p&gt;
+
+&lt;h2 id=&#34;opencv&#34;&gt;Opencv&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;１-安装交叉编译工具链-安装过程如下&#34;&gt;１.安装交叉编译工具链，安装过程如下：&lt;/h3&gt;
+
+&lt;h4 id=&#34;例-安装版本为gcc-linaro-arm-linux-gnueabihf-4-8-2014-04-linux&#34;&gt;例：安装版本为gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux&lt;/h4&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;网上获取gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux.tar，在所在目录进行解压，使用命令行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo tar -xvf gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux.tar
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在/usr/local下新建一个文件夹，使用命令行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mkdir arm-toolchain
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;将刚才解压后得到的gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux文件复制到arm-toolchain里，使用命令行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo cp -r /home/wl/下载/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux /usr/local/arm-toolchain
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;完成之后，需要设置环境变量，使用命令行打开/etc/profile 或 /etc/bash.bashrc
+sudo gedit /etc/profile
+在文件的末尾加入下面这一行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Export PATH=$PATH:/usr/local/arm-toolchain/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;保存过后使用如下命令行使其立即生效：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;source /etc/profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最后通过如下方式验证是否安装成功：arm-linux-gnueabi-gcc –v，出现版本信息说明验证安装成功&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-安装cmake-安装过程如下&#34;&gt;2.安装Cmake，安装过程如下：&lt;/h3&gt;
+
+&lt;p&gt;使用如下命令行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install cmake  即完成安装。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-opencv的编译&#34;&gt;3.Opencv的编译：&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-打开cmake&#34;&gt;(1)打开Cmake：&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;sudo cmake-gui,选择要编译的源文件和编译之后存放的路径,本人选择的路径分别为：/home/wl/下载/opencv-3.2.0，/home/wl/arm-linux-opencv-binaries，arm-linux-opencv-binaries为新建的文件夹。&lt;/p&gt;
+
+&lt;h4 id=&#34;2-然后配置编译工具&#34;&gt;(2)然后配置编译工具。&lt;/h4&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Specify the generator for this project:第一项选择Unix Makefile,勾选第四项Specify options for cross-compiling。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Sext后，Target System为linux,Compilers选项下的C和C++分别对应安装的gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux路径下的arm-linux-gnueabihf-gcc和arm-linux-gnueabihf-g++(在bin目录中) ,Target Root选项为gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux的安装目录，不用带/bin.&lt;/p&gt;
+
+&lt;h4 id=&#34;3-config&#34;&gt;(3)Config:&lt;/h4&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;点击finish之后会出现第一次Configure的结果，可能出现各种错误，比如说&lt;em&gt;ERROR in configuration process,project files may be invalid&lt;/em&gt; 这个错误可以无视掉，直接点击OK 。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;然后就是修改红色区域的部分值，去掉某些值：
+WITH_OPENCL、WITH_TIFF　BUILD_OPENEXR、WITH_OPENEXR、WITH_CUDA
+并修改CMAKE_INSTALL_PREFIX的值为自己想要的路径，这里我设置为了/usr/local/arm-opencv/。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;然后打开/home/wl/arm-linux-opencv-binaries目录下的CMakeCache.txt文件修改里边的两个值：
+CMAKE_EXE_LINKER_FLAGS原来为空，加上-lpthread -lrt -ldl
+CMAKE_INSTALL_PREFIX:PATH= XXXXXX(安装路径) 见上。
+然后就可以执行sudo make,注意这里要在编译生成文件目录下操作，这里我的路径为/home/wl/arm-linux-opencv-binaries&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;编译过程中可能出现如下问题&#34;&gt;&lt;strong&gt;编译过程中可能出现如下问题&lt;/strong&gt;：&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;gnueabihf/bin/ld:　../../3rdparty/lib/libzlib.a(crc32.obj):　relocation　R_ARM_THM_MOVW_ABS_NC　against　`a　local　symbol&amp;rsquo;can　ot　be　used　whenmaking　a　shared　object;　recompile　with　-fPIC&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;注意到其中的libzlib.a文件，我们需要在你指定的二进制文件输出路径的：3rdparty/zlib/CMakeFiles/zlib.dir/flags.make文件中，将C_FLAGS　=　　-fsigned-char　-W　-Wall　-Werror替换为
+C_FLAGS =    -fsigned-char -O3 -fPIC  -W -Wall -Werror
+就行了，在这之后或者之前都可能出现同样情况的错误，可能出错的不是这个文件，但是是同类型文件，你只需要找到对应文件按照上面修改就行了。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;后面需要重新到config步骤，修改CMakeCache.txt文件修改里边的两个值，具体如上，一直到不会出现该错误即可，最后make完成。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;5-最后执行&#34;&gt;(5)最后执行　&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo make install。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;4-配置编译环境&#34;&gt;4.配置编译环境：&lt;/h3&gt;
+
+&lt;p&gt;在此先做说明：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;编译文件存放目录：/home/wl/arm-linux-opencv-binaries&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;编译生成的头文件存放目录：（即CMAKE_INSTALL_PREFIX的值）/usr/local/arm-opencv&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;进行编辑库连接配置文件，&lt;/p&gt;
+
+&lt;p&gt;cd /etc/ld.so.conf.d
+sudo gedit opencv.conf
+添加如下内容：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/usr/local/arm-opencv/lib
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;然后 ldconfig使生效
+添加环境变量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo gedit /etc/bash.bashrc   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在最后添加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opencv-arm/lib/pkgconfig
+export PKG_CONFIG_PATH
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;编译测试：假如你已经有一个main.cpp函数文件了，进入其 所在的文件夹
+执行下面的命令进行编译：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;arm-linux-gnueabihf-g++ main.cpp -o hh  -lpthread -lrt `pkg-config --libs --cflags opencv`　　
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;其中arm-linux-gnueabihf-g++是编译用的编译器；
+main.cpp为要进行编译的程序；hh为编译之后生成的可执行二进制程序，可以任意命名，过程中可能报错找不到opencv.pc，那么我们将二进制文件中的unix-install中的openv.pc文件复制到/usr/lib/pkgconfig中即可。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;-编译成功之后，就会发现生成了一个名为hh的二进制文件，至此，在电脑上的OpenCV交叉编译已全部完成！剩下的工作就是把编译好的OpenCV库拷到ARM平台中。&lt;/p&gt;
+
+&lt;h3 id=&#34;5-移植到arm平台上&#34;&gt;5.移植到arm平台上&lt;/h3&gt;
+
+&lt;p&gt;-把arm-opencv拷贝到ARM中的/usr/local文件夹下,把arm-linux-opencv-binaries拷贝到ARM中的/home/wl文件夹下。之后验证的方法和上一步一样。&lt;/p&gt;
+
+&lt;p&gt;最后整个Opencv的移植就完成了！！！&lt;/p&gt;
+
+&lt;h2 id=&#34;ros&#34;&gt;ROS&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-首先用minicom连接开发板-没有问题&#34;&gt;1.  首先用minicom连接开发板，没有问题。&lt;/h3&gt;
+
+&lt;p&gt;使用的命令行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo minicom
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-接着在开发板上输入命令行添加软件源到sources-list&#34;&gt;2.  接着在开发板上输入命令行添加软件源到sources.list&lt;/h3&gt;
+
+&lt;p&gt;使用的命令行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$sudo sh -c &#39;echo &amp;quot;deb http://packages.ros.org/ros/ubuntu trusty main&amp;quot; &amp;gt; /etc/apt/sources.list.d/ros-latest.list&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-然后设置密钥&#34;&gt;3.  然后设置密钥&lt;/h3&gt;
+
+&lt;p&gt;使用的命令行:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ wget http://packages.ros.org/ros.key -O - | sudo apt-key add –
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;4-接下来输入&#34;&gt;4.  接下来输入&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;5-然后输入&#34;&gt;5.  然后输入&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt; $ sudo apt-get install ros-indigo-base安装ros
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;6-接下来初始化ros-依次输入&#34;&gt;6.  接下来初始化ros：依次输入&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt; $ sudo rosdep init
+ $ rosdep update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;7-最后配置环境&#34;&gt;7.  最后配置环境：&lt;/h3&gt;
+
+&lt;p&gt;输入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo &amp;quot;source /opt/ros/indigo/setup.bash&amp;quot; &amp;gt;&amp;gt; ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使环境变量设置立即生效输入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ source ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;可能遇到的问题&#34;&gt;可能遇到的问题&lt;/h5&gt;
+
+&lt;h4 id=&#34;font-size-4-1-命令行长度的问题-在添加软件源和设置密钥输入命令行时-由于minicom的bug会让命令行输入到一定长度时转而从气势位置输入让前面的代码消失-但这个不影响代码的效果-与后面的bug也没有关系&#34;&gt;&lt;font size=&#34;4&#34;&gt;  1.    命令行长度的问题：在添加软件源和设置密钥输入命令行时，由于minicom的bug会让命令行输入到一定长度时转而从气势位置输入让前面的代码消失，但这个不影响代码的效果，与后面的bug也没有关系。&lt;/h4&gt;
+
+&lt;h4 id=&#34;font-size-4-2-update时会出现一些网站hit不了-只需要多试几次至成功即可&#34;&gt;&lt;font size=&#34;4&#34;&gt;  2.   Update时会出现一些网站hit不了，只需要多试几次至成功即可。&lt;/h4&gt;
+
+&lt;h4 id=&#34;font-size-4-3-install时如果安装有full版本可能会无法locate-所以不要安装full版本-用base版本即可&#34;&gt;&lt;font size=&#34;4&#34;&gt;  3.   Install时如果安装有full版本可能会无法locate，所以不要安装full版本，用base版本即可。&lt;/h4&gt;
+
+&lt;h4 id=&#34;font-size-4-4-install时要注意ros支持的ubuntu版本-如indigo时14-04-而16-04则需要别的版本&#34;&gt;&lt;font size=&#34;4&#34;&gt;  4.   Install时要注意ros支持的ubuntu版本，如indigo时14.04，而16.04则需要别的版本。&lt;/h4&gt;
+
+&lt;h4 id=&#34;font-size-4-5-install时可能会有一些目标get不到-在install一次即可&#34;&gt;&lt;font size=&#34;4&#34;&gt;  5.   Install时可能会有一些目标get不到，在install一次即可。&lt;/h4&gt;
+
+&lt;h4 id=&#34;font-size-4-6-如果初始化失败可能时前面的install没有成功-回头看一下再install直至成功&#34;&gt;&lt;font size=&#34;4&#34;&gt;  6.   如果初始化失败可能时前面的install没有成功，回头看一下再install直至成功。&lt;/h4&gt;
+
+&lt;h1 id=&#34;optitrack&#34;&gt;Optitrack&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;从github上下载压缩包：&lt;/p&gt;
+
+&lt;h2 id=&#34;1-进入板卡-在-home目录下创建一个名为catkin-make的文件夹&#34;&gt;1.  进入板卡，在/home目录下创建一个名为catkin_make的文件夹：&lt;/h2&gt;
+
+&lt;p&gt;cd /home
+mkdir catkin_make&lt;/p&gt;
+
+&lt;p&gt;再在该文件夹下创建一个名为/src的文件夹：
+cd ./catkin_make
+mkdir src&lt;/p&gt;
+
+&lt;h2 id=&#34;2-将压缩包解压后的源文件放到刚刚创建的文件夹-src下&#34;&gt;2.  将压缩包解压后的源文件放到刚刚创建的文件夹/src下:&lt;/h2&gt;
+
+&lt;p&gt;cp -r 解压后文件所在位置 /home/src&lt;/p&gt;
+
+&lt;h2 id=&#34;3-在catkin-make文件夹底下对源码进行编译&#34;&gt;3.  在catkin_make文件夹底下对源码进行编译：&lt;/h2&gt;
+
+&lt;p&gt;cd ..
+catkin_make
+至此，该库已编译完成！&lt;/p&gt;
+
+&lt;h1 id=&#34;eigen-mavros&#34;&gt;Eigen，mavros&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;1-从网上下载源码-然后解压&#34;&gt;1.  从网上下载源码，然后解压&lt;/h2&gt;
+
+&lt;h2 id=&#34;2-在解压的目录-对其进行编译&#34;&gt;2.  在解压的目录，对其进行编译&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;make
+make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;交叉编译器&#34;&gt;交叉编译器&lt;/h1&gt;
+
+&lt;h2 id=&#34;1-交叉编译器简介&#34;&gt;1.   交叉编译器简介&lt;/h2&gt;
+
+&lt;p&gt;在一种计算机环境中运行的编译程序，能编译出在另外一种环境下运行的代码，这个编译过程就叫交叉编译.简单地说，就是在一个平台上生成另一个平台上的可执行代码.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-体系结构与操作系统&#34;&gt;2.   体系结构与操作系统&lt;/h2&gt;
+
+&lt;h3 id=&#34;2-1使用的体系结构有-arm结构-x86结构等&#34;&gt;2.1使用的体系结构有:ARM结构、x86结构等&lt;/h3&gt;
+
+&lt;h3 id=&#34;2-2使用的操作系统有linux等&#34;&gt;2.2使用的操作系统有linux等.&lt;/h3&gt;
+
+&lt;h2 id=&#34;3-安装交叉工具链&#34;&gt;3.  安装交叉工具链&lt;/h2&gt;
+
+&lt;h3 id=&#34;3-1自选版本下载&#34;&gt;3.1自选版本下载&lt;/h3&gt;
+
+&lt;h4 id=&#34;3-1-1工具下载&#34;&gt;3.1.1工具下载:&lt;/h4&gt;
+
+&lt;p&gt;从linaro的网站下载预编译包 ，以  gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux 为例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    解压 gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux.tar. xz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;3-1-2解压方法&#34;&gt;3.1.2解压方法：&lt;/h4&gt;
+
+&lt;p&gt;解压tar.xz文件：先 xz  -d  xxx.tar.xz 将 xxx.tar.xz解压成 xxx.tar,然后再用 tar xvf  xxx.tar来解包&lt;/p&gt;
+
+&lt;p&gt;另外解压方式：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    tar –xvf file.tar //解压 tar包
+
+    tar -xzvf file.tar.gz //解压tar.gz
+
+    tar -xjvf file.tar.bz2   //解压 tar.bz2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;易错点&#34;&gt;易错点：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;    apt-get install g++-arm-linux-gnueabihf 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;获取的是最新版本的编译工具而交叉编译工具版本号一定要和你选用的arm平台的版本对应，可以先确定arm平台编译工具的版本再下载对应版本到本机，不然会使得本机交叉编译的文件无法在arm平台运行。&lt;/p&gt;
+
+&lt;h4 id=&#34;3-1-3环境变量设置-设置环境变量使得编译器指向你所下载的工具链&#34;&gt;3.1.3环境变量设置（设置环境变量使得编译器指向你所下载的工具链）&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;    ~$ sudo gedit .bashrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;打开文件后，在最后俩行加上编译工具链的路径：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PATH=$PATH:/home /下载/gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_linux/bin 
+export PATH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;具体格式依据：
+     PATH=$PATH:/（你所解压之后 的工具链所在的路径）/bin
+     export PATH&lt;/p&gt;
+
+&lt;h4 id=&#34;易错点-1&#34;&gt;易错点：&lt;/h4&gt;
+
+&lt;p&gt;第一行的$PATH后面是英文冒号，$PATH之前的等号左右俩侧不要存在空格，不然报错&lt;/p&gt;
+
+&lt;h4 id=&#34;3-1-4使环境变量-生效&#34;&gt;3.1.4使环境变量 生效&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;~$ source .bashrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;3-1-5-测试&#34;&gt;3.1.5 测试&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;~$ arm-linux-gnueabihf-gcc -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;报错&#34;&gt;报错：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;arm-linux-gnueabihf-gcc: error while loading shared libraries: libstdc++.so.6: cannot open shared object file: No such file or directory
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;原因-64位的系统-缺少-lib32stdc-6这个包&#34;&gt;原因：64位的系统，缺少 lib32stdc++6这个包&lt;/h4&gt;
+
+&lt;h4 id=&#34;解决-sudo-apt-get-install-lib32stdc-6&#34;&gt;解决：~$ sudo apt-get install lib32stdc++6&lt;/h4&gt;
+
+&lt;p&gt;再测试　~$ arm-linux-gnueabihf-gcc -v      出现相应版本号&lt;/p&gt;
+
+&lt;h3 id=&#34;3-2默认版本下载&#34;&gt;3.2默认版本下载&lt;/h3&gt;
+
+&lt;p&gt;采用指令默认下载相应工具链&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;4-交叉编译compute-library-examples&#34;&gt;4.   交叉编译Compute Library examples&lt;/h2&gt;
+
+&lt;h3 id=&#34;4-1官网下载并且编译computer-library文件&#34;&gt;4.1官网下载并且编译Computer library文件&lt;/h3&gt;
+
+&lt;h4 id=&#34;4-1-1安装git工具&#34;&gt;4.1.1安装git工具：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;4-1-2下载computer-library文件&#34;&gt;4.1.2下载Computer library文件：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/Arm-software/ComputeLibrary.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;4-1-3安装scons工具&#34;&gt;4.1.3安装scons工具：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;$sudo apt-get install scons
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;4-1-4在该路径下打开终端-用scons命令对computer-library进行编译&#34;&gt;4.1.4在该路径下打开终端，用scons命令对Computer library进行编译：&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;（&lt;a href=&#34;https://arm-software.github.io/ComputeLibrary/v17.04/index.xhtml#S3_2_2_examples）&#34;&gt;https://arm-software.github.io/ComputeLibrary/v17.04/index.xhtml#S3_2_2_examples）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;指令：$scons Werror=1 -j8 debug=0 asserts=1 neon=0 opencl=1 embed_kernels=1 os=linux arch=armv7a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;参数注释&#34;&gt;参数注释：&lt;/h4&gt;
+
+&lt;p&gt;启用_debug = 1_，并且使用符号构建库同时不启用优化
+使用_debug = 0_和_asserts=1_：启用优化并删除符号&lt;/p&gt;
+
+&lt;p&gt;如果自己下载的工具链与官网的工具链相同&lt;em&gt;Werror=1&lt;/em&gt;,
+如果使用不同的编译器版本&lt;em&gt;Werror=0&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;架构：x86目标只能与_neon = 0_和_opencl = 1_一起使用
+arch是你使用的arm平台&lt;/p&gt;
+
+&lt;h3 id=&#34;4-2单独编译cl-convolution和neon-convolution俩个examples&#34;&gt;4.2单独编译cl_convolution和neon_convolution俩个examples&lt;/h3&gt;
+
+&lt;p&gt;下载官网上库已经编译好的arm_compute-v17.03.1-bin（以17.03.1为例）文件&lt;/p&gt;
+
+&lt;p&gt;在该路径下打开终端编译:&lt;/p&gt;
+
+&lt;h4 id=&#34;4-2-1cl-convolution&#34;&gt;4.2.1cl_convolution&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;~$arm-linux-gnueabihf-g++ examples/cl_convolution.cpp test_helpers/Utils.cpp -I. -Iinclude -std=c++11 -mfpu=neon -L. -larm_compute -lOpenCL -o cl_convolution
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;4-2-2neon-convolution&#34;&gt;4.2.2neon_convolution&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;arm-linux-gnueabihf-g++ examples/cl_convolution.cpp test_helpers/Utils.cpp -I. -Iinclude -std=c++11 -mfpu=neon -L/home/dengkai/下载/arm_compute-v17.03.1-bin/lib/linux-armv7a-neon-cl -larm_compute -L/home/dengkai/下载/arm_compute-v17.03.1-bin/-lOpenCL -o cl_convolution
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;报错:arm_compute not found
+            opencl not found&lt;/p&gt;
+
+&lt;p&gt;原因：armcomputer和opencl俩个库路径不对&lt;/p&gt;
+
+&lt;p&gt;解决：找到这俩个库的位置，具体参照以下代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; arm-linux-gnueabihf-g++ examples/neon_convolution.cpp test_helpers/Utils.cpp -I. -Iinclude -std=c++11 -mfpu=neon -L/home/dengkai/下载/arm_compute-v17.03.1-bin/lib/linux-armv7a-neon -larm_compute -L/home/dengkai/下载/arm_compute-v17.03.1-bin/-lOpenCL -o neon_convolution
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;也可以在arm_compute-v17.03.1-bin目录下获得编译好的neon_convolution文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gcc examples/neon_convolution.cpp utils/Utils.cpp -I. -Iinclude -std=c++11 -mfpu=neon -larm_compute -larm_compute_core -o neon_convolution
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意： linux-armv7a-neon-cl和 linux-armv7a-neon略有不同记得修改&lt;/p&gt;
+
+&lt;h2 id=&#34;5-传输至板卡运行&#34;&gt;5.   传输至板卡运行&lt;/h2&gt;
+
+&lt;h3 id=&#34;5-1电脑pc终端与板卡-rk3288-minicom连接&#34;&gt;5.1电脑pc终端与板卡（rk3288）minicom连接&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;~$sudo minicom  之后输入本机密码修改
+~$minicom -s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;5-1-1serial-port-setup选项配置&#34;&gt;5.1.1Serial port setup选项配置&lt;/h4&gt;
+
+&lt;p&gt;选择配置项，这里我们主要配置Serial port setup选项，下面是基本配置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;≠ A -    Serial Device      : /dev/ttyS
+≠ B - Lockfile Location     : /var/lock
+≠ C -   Callin Program      :
+≠ D -  Callout Program      :
+≠ E -    Bps/Par/Bits       : 115200 8N1
+≠ F - Hardware Flow Control : No
+≠ G - Software Flow Control : No
+≠    Change which setting?
++-----------------------------------------------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A选项Serial Device 根据我们的串口来，如果是COM1我们就选择ttyS0（不过后面说的出错也有例外），COM2口选择ttyS1等等&lt;/p&gt;
+
+&lt;p&gt;F选项一定要改为NO，不然终端只能打印从下位机发过来的信息，而不能接受键盘的输入&lt;/p&gt;
+
+&lt;h4 id=&#34;5-1-2使用minicom&#34;&gt;5.1.2使用minicom&lt;/h4&gt;
+
+&lt;h4 id=&#34;报错及可能出现的问题&#34;&gt;报错及可能出现的问题：&lt;/h4&gt;
+
+&lt;p&gt;串口被锁（Device /dev/ttyS0 is locked）
+解决：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~$ ls /var/lock
+LCK..ttyS0  subsys
+:~$ kill 0
+~$ ls /var/lock
+subsys
+~$ sudo minicom
+Welcome to minicom 2.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;5-2电脑pc终端与arm平台ssh连接&#34;&gt;5.2电脑pc终端与arm平台ssh连接&lt;/h3&gt;
+
+&lt;h4 id=&#34;5-2-1板卡应该与pc在同一个局域网-检查是否联通-可以用ping指令&#34;&gt;5.2.1板卡应该与pc在同一个局域网，检查是否联通，可以用ping指令&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;~$ ssh root@IP
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;例如&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~$ ssh root@192.168.1.153
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;5-2-2报错&#34;&gt;5.2.2报错：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh: connect to host 192.168.1.153 port 22: No route to host
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;原因：ip地址不对&lt;/p&gt;
+
+&lt;p&gt;解决：&lt;/p&gt;
+
+&lt;p&gt;a.打开minicom端，输入&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~$ ifconfig
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;获得ip地址（务必在进入minicom中输入该命令，在电脑pc下输入该命令获得的ip不对）&lt;/p&gt;
+
+&lt;p&gt;b.在电脑终端输入
+    ~$ ssh root@IP
+之后提示输入密码，此处密码为板卡默认密码，官网上有写（我们平台是mqmaker）&lt;/p&gt;
+
+&lt;h4 id=&#34;5-2-3修改密码-进入minicom-sudo-minicom&#34;&gt;5.2.3修改密码:进入minicom(sudo minicom)&lt;/h4&gt;
+
+&lt;p&gt;输入以下指令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@mqmaker:~# passwd root 
+Enter new UNIX password:  
+Retype new UNIX password:  
+passwd: password updated successfully
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;5-3-ssh链接平台以后传输文件&#34;&gt;5.3 ssh链接平台以后传输文件&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;scp /home/dengkai/lingd/upload/cl_convolution.o  root@192.168.1.153:/home/dk
+scp /home/dengkai/lingd/upload/neon_convolution.o  root@192.168.1.153:/home/dk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;6-板卡执行交叉编译完的文件&#34;&gt;6.   板卡执行交叉编译完的文件&lt;/h2&gt;
+
+&lt;h3 id=&#34;6-1运行可执行文件&#34;&gt;6.1运行可执行文件&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;~#./cl_convolution
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;6-1-1报错&#34;&gt;6.1.1报错：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;~#./cl_convolution
+terminate called after throwing an instance of &#39;cl::Error&#39;
+what():  empty
+libarm_compute.so not found
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解决：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;scp -r /home/下载/arm_compute-v17.03.1-bin/lib root@192.168.1.153:/usr/local/lib
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;将需要用到的库放至arm对应文件夹下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cl_convolution: ELF 32-bit LSB  executable, ARM, EABI5 version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 3.2.0, BuildID[sha1]=e2d66d68a52b4d09a0a934980b934c3a79f0b8c7, not stripped
+./cl_convolution: /usr/lib/arm-linux-gnueabihf/libstdc++.so.6: version `GLIBCXX_3.4.20&#39; not found ( required by ./cl_convolution)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;6-2运行结果&#34;&gt;6.2运行结果&lt;/h3&gt;
+
+&lt;p&gt;例子运行正确则返回&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;Test passed&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;7-本地编译&#34;&gt;7.   本地编译&lt;/h2&gt;
+
+&lt;h3 id=&#34;7-1配置工具git-g-scons&#34;&gt;7.1配置工具git、g++、scons：&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install g++ git scons 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;7-2下载computelibrary&#34;&gt;7.2下载ComputeLibrary&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/Arm-software/ComputeLibrary.git 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;7-3本地编译&#34;&gt;7.3本地编译：&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ComputeLibrary 
+scons Werror=1 debug=0 asserts=0 neon=1 opencl=0 examples=1 build=native -j`
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AMaze团队</title>
+      <link>/post/amaze%E5%9B%A2%E9%98%9F/</link>
+      <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/amaze%E5%9B%A2%E9%98%9F/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;#指导老师&#34;&gt;指导老师&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;#电子组&#34;&gt;电子组&lt;/a&gt;
+   &lt;a href=&#34;#嵌入式组&#34;&gt;嵌入式组&lt;/a&gt;
+   &lt;a href=&#34;#感知组&#34;&gt;感知组&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;指导老师&#34;&gt;指导老师&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;指导老师（teacher）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;wh.jpg&#34; width=&#34;100px&#34;&gt;&lt;/td&gt;
+&lt;td&gt;吴华&lt;br&gt;吴华（1981年生）博士现任华北电力大学控制与计算机工程学院副教授，硕士生导师，华北电力大学电力智能机器人工程技术研究中心主任。主要研究方向为：全自主巡检、机器人及无人机的同步定位与地图构建（SLAM）、影像识别、物流无人机的组合导航、多传感器融合、计算机视觉、机器学习、嵌入式计算等。AMaze团队是由吴华博士发起，并由一群喜爱智能机器人并愿意培养动手能力的优秀学生组成。通过对飞行机器人协同和环境感知等方向的实验和探索，不断提升团队成员的工程能力，鼓励形成各种有趣开源的创新作品。
+&lt;/tr&gt;
+&lt;tr&gt;
+
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Wu Hua&lt;br&gt; WU (born in 1981, China) is Associate Professor of the School of Control and Computer Engineering at North China Electric Power University, where he does research at the intersection of robotics, computer vision and machine learning. Specifically, he investigates the use of SLAM and machine learning to enable autonomous inspection with embedded on-board computation using vision, LIDAR and smart sensors for drones in inspection, monitoring and logistics scenarios. As a leader of AMaze ( a group of active, persistent and self-motivated students ), Dr. Hua WU would like to enhance the engineering ability of members and encourage more open-source innovations via experiments and research on cooperative flying robot, environmental perception.
+&lt;/tr&gt;
+
+
+&lt;/table&gt;
+
+&lt;h3 id=&#34;电子组&#34;&gt;电子组&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;电子组（electronic team）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;wxw.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;王晓伟&lt;br&gt;就读于华北电力大学自动化专业，现属于amazething嵌入式组的一员。目前本人主要负责基于linux系统的嵌入式开发，主要针对系统镜像制作，烧写，系统环境配置，程序执行，网络配置等方面。个人具有一定的编程基础，掌握C,C++,python等高级语言，对无人机编队算法有浓厚的兴趣。对linux系统也有较深入的理解。致力于无人机导航，编队的环境配置与网络架构。&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Wang  Xiao Wei&lt;br&gt;An automation major from North China Electricity Power University  and now the group leader of the amzething embedded development group.At present,I am  responsible for Embedded Linux development mainly  aiming at system image ,system enviroment configuration,program executionand network .Having certian programming foundation including C,C++,Python and great interst in UAV formation algorithm.Also having a deepunderstanding of Linux system.Devoting to enviroment configuration and network architecture of UAV navigation and formation.&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;cyj.png&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;淳宇杰&lt;br&gt;就读于华北电力大学自动化专业，是Amaze团队嵌入式组的一员。目前主要负责树莓派的配置和应用。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;CHUN YUJIE &lt;br&gt;Majoring the bachelor degree of Automation in NCEPU. Belonging to the group of Embedded System. Now studying at the modification and application of the raspberry pi.&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;wangbf.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;王柏夫&lt;br&gt;大家好，我是华北电力大学数理学院的王柏夫，来自新疆昌吉。爱好是骑行，玩航模，听音乐。擅长动手操作，使用计算机。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Wang Baifu&lt;br&gt; Hello, I am wang baifu from the school of mathematics and science, from changji, xinjiang. Hobby is riding, playing model, listening to music. Be good at manual operation and use computer.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;ygs.png&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;姚贵山&lt;br&gt;华北电力大学本科在读。自动化专业，在AmazeGroup电子组，主要负责无人机的整体组装，维修及GPS校准与调试。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Guishan Yao&lt;br&gt;He is an undergraduate of North China Electric Power University, major in automation.In electronic part of Amaze Group ,he is mainly responsible for UAV assemble, maintenance and GPS calibration and debugging.&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;cw.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;蔡玮&lt;br&gt;现在就读于华北电力大学，amaze团队电子组成员。负责无人机硬件搭建与飞控代码研究，并进行一些调试工作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Cai Wei&lt;br&gt;Now studying at North China Electric Power University, a team member of the electronic team.  Responsible for UAV hardware construction and flight control code research, and do some debugging work.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;lc.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;刘草&lt;br&gt;华北电力大学创新班学生，来自电子组，主要从事于飞控调试和试飞工作，强项是无人机遥控飞行。在实验室工作期间，我参加无人机搭建，硬件搭建，积累硬件调试经验，对调试工作很感兴趣。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Liu Cao&lt;br&gt;North China Electric Power University Innovation class students , from the flight control group, mainly engaged in flight control commissioning and test flight work .My strength is controling flight. During the work in the laboratory, I participated in the unmanned aerial vehicle erection, hardware construction, accumulated hardware debugging experience.I am interested inthe debugging work . &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;swl.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;谌文澜&lt;br&gt;华北电力大学自动化专业本科生，amaze无人机团队电子组成员，参与无人机硬件搭建及调试，主要负责相关文档记录工作。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Shen Wenlan&lt;br&gt;undergraduate student from North China Electric Power University, member of Amazething Electronic team, participated in hardware constructing and debugging, mainly in charge of organizing and recording relevant documents.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;sgd.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;孙国栋&lt;br&gt;自动化专业，电子组的成员，学校飞行器协会会长，对飞行器非常感兴趣，对飞行器控制方面有一些基本了解，在组里学习飞行器控制，飞行监控，飞控代码等。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Sun Guodong&lt;br&gt;major in automation,a partner in electron team,president of the school aircraft association,is very interested in aircraft,has some ideas in aircraft control,is studying aircraft control  flight character surveillance and Flight control code in group now.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;zsy.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;周帅宇&lt;br&gt;爱好改造与进步，喜欢交流与分享，崇尚合作与贡献。保持谦虚，保持好奇。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Zhou Shuaiyu&lt;br&gt;like to change and progress,love to communicate and share,want to corporate and devote.Stay hungry,stay foolish,always.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;zz.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;朱政&lt;br&gt;做事认真有耐心，自信有上进心；带领团队参加美国大学生数学建模竞赛获S奖，参加全国大学生数学建模竞赛获北京市二等奖；熟练掌握c语言，有计算机二级C语言证书；熟练掌握office办公软件；热爱运动，参加2016体彩杯昌平区青少年户外挑战赛获亚军；热爱学习，一直不断在充实自己。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;ZhuZheng&lt;br&gt;work conscientiously, self-confidence and self-motivated; Led the team to participate in MCM/ICM and won the Successful Participant, to participate in the China Undergraduate Mathematical Contest in Modeling and won the second prize in Beijing ; Proficiency in c language and office software; Love sports, and won the second place in the youth outdoor challenge competition of 2016 sports cup changping district.；I love learning, and I keep enriching myself.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+
+&lt;h3 id=&#34;嵌入式组&#34;&gt;嵌入式组&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;嵌入式组（embedded computation team）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;dk.png&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;邓开&lt;br&gt;在amazething团队中,担任嵌入式组组长，主要负责交叉编译，协助完成平台环境的搭建和嵌入式系统的制作等工作。今后希望更多与无人机和人工智能打交道。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Deng Kai&lt;br&gt; as the head of the embedded computation team in the amazething team，is mainly responsible for cross compiling, assisting in the construction of the platform environment and the production of the embedded system. I hope to deal more with UAV and artificial intelligence in the future.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;sjxin.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;宋佳鑫&lt;br&gt;我是宋佳鑫，在学习中成长，在成长中学习，爱好听音乐、去旅行。从未尝试过窝在实验室里，第一次加入这样有趣的实验室开启一段无人机之旅，甚是期待。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Song Jiaxin&lt;br&gt;I&#39;m Jiaxin Song , a girl who loves to listening music and traveling . &#39; To grow in learning ,
+to learn in grow. &#39; is my motto. Without any experience in lab, joining the Amaze Group to learn UAVs really makes me excited. I hope it will be an interesting experience.&#39;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;liuyizhuo.png&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;刘一卓&lt;br&gt;我是刘一卓，华北电力大学2016级自动化专业，来自山西。喜欢旅行，喜欢瑜伽，喜欢学习。“在所有‘从容不迫’的背后，都有你看不到的狼狈、慌张和焦虑。”是我最喜欢的一句话，希望自己努力成为一个优秀的人。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Liu Yizhuo&lt;br&gt;I am Liu Yizhuo from Shanxi at North China electric power university，majoring in automation in 2016.Like travel, like yoga, like learning.&#39;Behind all the unhurried there is confusion, panic, anxiety that you can&#39;t see&#39;is my favorite sentence. I hope myself to become an excellent person.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;td&gt;&lt;img src=&#34;wl.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;王亮&lt;br&gt;华北电力大学自动化系本科生，为实验室嵌入式小组的成员，主要负责硬件，以及嵌入式系统的制作与调试，希望以后能将其与人工智能，模式识别等方面结合起来。 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Wang Liang&lt;br&gt;Department of Automation, North China Electric Power University, is a member of the lab’s embedded computation team, mainly responsible for hardware and embedded system production and debugging. And I hope to combine the embedded devices with artificial intelligence, pattern recognition and so on in the future.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;wed.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;王恩东&lt;br&gt;华北电力大学自动化系本科生，为实验室嵌入式小组的成员，对计算机相关的东西有极强的兴趣，希望可以将兴趣转化为动力做下去。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Wang Endong&lt;br&gt;The undergraduate of Automation Department of North China Electric Power University is a member of the laboratory embedded team and has a strong interest in computer-related things. I hope that I can turn interest into motivation.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;wf.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;王芳&lt;br&gt;是嵌入式小组的一员，主要从事交叉编译，嵌入式系统制作剪裁，平台环境搭建，文档整理等工作。我的爱好是跳舞和旅游。我喜欢跟着音乐，打着节拍，在舞蹈中绽放自我；我也喜欢成为一个背包客，穿过中国的每一个大街小巷，感受中国多元的文化。我为人热情真诚，谦虚努力，我想成为一个有爱，有能力的，散发着独特人格魅力的人。很荣幸加入这个实验室，能和老师同学一起交流学习，提升能力。这是一个大舞台，我会尽自己的力量，让这个舞台绽放更多的精彩。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Wang Fang&lt;br&gt;I’m a member of the embedded computation team, mainly engage in cross compilation, embedded system production tailoring, platform environment, document finishing and so on. My hobby is dancing and traveling. I like to follow the music, beat the Beat, in the dance to bloom myself; I also like to be a backpacker through every street in China to feel the Chinese multicultural culture. I am warm sincere, modest and diligent. I want to be a loving, capable, of a unique personality charm. I’m very honored to join this laboratory , exchange learning, improve ability with teachers and students . This is a big stage, I will do my best to let this stage bloom more wonderful.&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;/table&gt;
+
+&lt;h3 id=&#34;感知组&#34;&gt;感知组&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;感知组（perception team）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;zhangh.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;张虎&lt;br&gt;张虎，华北电力大学控制与计算机工程学院自动化专业2016级本科生，2018年5月加入Amazegroup团队，现为感知组组长，主要参与设计无人机编队和无人机导航的控制程序，并负责编队项目。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Zhang Hu&lt;br&gt; My name is Zhang Hu. I am a 2016 undergraduate student in automation, School of Control and Computer Engineering, NCEPU. I joined Amazegroup in May, 2018. As a member of perception team, I mainly design the control programs for drone formation and robot navigation with other members. And I am the leader of the drone formation project.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;yyj.png&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;杨映军&lt;br&gt;就读于华北电力大学软件工程专业，现属于amaze感知组的一员。目前主要负责的web相关和视觉部分，比如网页开发，代码整合和功能维护等。个人爱好编程，自学了前端与后端相关知识，能进行基础的应用，同时具有相关编程语言的必要基础，例如C++、Java、Python等，也掌握了基本的数据结构的知识，能运用一些常见的前端后端框架。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Yang Yingjun&lt;br&gt;Majoring in software engineering at North China Electric Power University,  now belongs to amaze perception team. Currently responsible for the camera and SLAM algorithm-related parts, such as code integration and functional maintenance.Personal hobby programming, self-learning front-end and back-end related knowledge, can carry out basic applications, and have the necessary foundations of related programming languages, such as C++, Java, Python, etc., also master the basic data structure knowledge, can use some common Front-end backend framework.&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;ydx.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;杨岱鑫&lt;br&gt;大家好我叫杨岱鑫，是一个开朗乐观的95后。喜欢交朋友，编写代码。对无人机有极大的兴趣，希望在团队中获得乐趣，发挥出自己的作用。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Yang Daixin&lt;br&gt;Hello everyone I am Yang daixin, is a openmind and optimistic boy who born after 95. Like making friends and typing code. I have great interest in drones and hope to have fun in the team and play my role.&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;rq.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;任琪&lt;br&gt;就读于华北电力大学软件工程专业，现属于amaze感知组的一员。目前本人主要负责amazeweb的管理和维护。个人具有一定的编程基础，能够利用专业相关的知识对项目进行维护与管理。已经学习过C，C++，java，python等编程语言。本人能够熟练使用java进行项目开发，也掌握了程序开发所需的基本数据结构。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Ren Qi&lt;br&gt;studying software engineering at North China Electric Power University, now belongs to amaze perception team. Currently I am mainly responsible for the management and maintenance of amazeweb. Individuals have a certain programming foundation, able to use the relevant professional knowledge to maintain and manage the project. Have learned C, C + +, java, python and other programming languages. I can skillfully use java for project development, but also mastered the basic data structure required for program development.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;pjh.jpg&#34; width=&#34;100&#34;&gt;&lt;/td&gt;
+&lt;td&gt;彭浚桓&lt;br&gt;就读于华北电力大学软件工程专业，现属于amaze感知组的一员。目前主要负责的是摄像头与SLAM算法相关的部分，比如代码整合和功能维护等。个人擅长编码，有一定的设计意识，能够利用专业相关的知识对项目进行维护与管理。同时具有相关编程语言的必要基础，例如C++、Java、Python等，也掌握了基本的数据结构的知识。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Peng Junhuan&lt;br&gt;studying software engineering at North China Electric Power University,  now belongs to amaze perception team. Currently responsible for the camera and SLAM algorithm-related parts, such as code integration and functional maintenance. Personally good at coding, there is a certain sense of design, able to use professional knowledge to maintain and manage the project. At the same time have the necessary basis for the relevant programming language, such as C + +, Java, Python, etc., but also grasp the basic knowledge of the data structure.&lt;/td&gt;
+
+&lt;/tr&gt;
+
+
+
+
+
+
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>amaze简介</title>
+      <link>/post/amaze</link>
+      <pubDate>Tue, 13 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/amaze</guid>
+      <description>&lt;p&gt;Amazething成立于2017年6月,AMaze依托华北电力大学电力智能机器人工程技术研究中心，致力于探索发现智能机器人群体协作中的规律以及环境感知等技术。  AMaze团队由吴华博士和一群富有热情懂得坚持善于创新的学生组成。本团队近期重点着力于两方面的研究：一是机器人的自主导航，二是飞行机器人的编队和协同。团队将取得的各种进展和成果开源到Github上，期待与更多愿意投身于智能机器人创新和研究的朋友们进行交流协作，创造出更加有趣的作品。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;code.jpg&#34; alt=&#34;&#34; title=&#34;code&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>创新展示</title>
+      <link>/post/innovate/</link>
+      <pubDate>Sat, 10 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/innovate/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;picture2.jpg&#34; alt=&#34;&#34; title=&#34;picture1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;-2018年10月27日晚，由控计学院吴华老师带领的AMaze（amazething.io）师生创新团队在华电操场上空上演了一场精彩的无人机编队灯光秀，为母校60华诞献上生日祝福。学院党委书记刘威、常务副院长房方莅临现场，超过2000名师生校友观看了现场表演。
+无人机在天空组成I ❤ N C E P U的字样，迎着夜空升起，在空中散发绚丽的色彩，华电学子对母校的爱和祝福萦绕心头。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;picture3.jpg&#34; alt=&#34;&#34; title=&#34;picture2&#34; /&gt;
+-这些夜空的精灵时而穿梭变换成“£”阵型形成凝聚力极强的团体，时而悄悄地摆出“❤”阵型表示对知识的追寻，时而组成“~”符号展示出华电的特色。&lt;/p&gt;
+
+&lt;p&gt;-在夜空中，N C E P U这五个字母被精灵们围绕在空中造出一个巨大的校徽，在地球表面以最特殊的方式向全球华电学子展现了母校的思念与关怀。&lt;/p&gt;
+
+&lt;p&gt;-无人机慢慢组成“六十”的字样。再次把整个表演推向了高潮。在这六十字样的背后，有无数华电校友用智慧和生命创造着全球能源电力的奇迹。全球顶尖的电力人才汇集于此，共祝华电60岁生日快乐！夜幕降临，华电六十华诞的脚步愈来愈近，星光闪烁，那是无人机点燃了夜空中的生日蜡烛，时间定格在这个瞬间……
+&lt;img src=&#34;picture6.jpg&#34; alt=&#34;&#34; title=&#34;picture3&#34; /&gt;
+-Amaze团队还将开源本次编队的所有文档资料和代码。欢迎关注Amaze微信公众号、团队网站。期待下一个创造Amazing thing的你加入团队！
+&lt;img src=&#34;code.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
